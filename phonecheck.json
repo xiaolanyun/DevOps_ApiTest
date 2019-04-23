@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "9d1ae728-1f55-4d44-9da2-da11ee079d42",
+		"name": "JokeBookApiDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "验证手机号码归属地",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a8ab52f3-689e-49b8-9ec9-bc1f65c5aed5",
+						"exec": [
+							"//验证服务器返回状态码为200",
+							"pm.test(",
+							"    \"验证服务器返回状态码为：200\",function(){",
+							"        pm.response.to.have.status(200);",
+							"    }",
+							"    );",
+							"    //验证服务器返回error code值为0",
+							"pm.test(\"验证服务器返回error_code值为：0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.error_code).to.eql(0);",
+							"});",
+							"//验证服务器返回reason值为Return_Successd!",
+							"pm.test(\"验证服务器返回reason值为Return_Successd!\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.reason).to.eql(\"Return Successd!\");",
+							"});",
+							"//验证服务器返回的province为四川",
+							"pm.test(\"验证服务器返回的province为四川\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonDicData = jsonData.result;",
+							"    pm.expect(jsonDicData.province).to.eql(\"四川\");",
+							"});",
+							"//验证服务器返回的city为绵阳",
+							"pm.test(\"验证服务器返回的city为绵阳\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonDicData = jsonData.result;",
+							"    pm.expect(jsonDicData.city).to.eql(\"绵阳\");",
+							"});",
+							"//验证服务器返回的areacode为0816",
+							"pm.test(\"验证服务器返回的areacode\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonDicData = jsonData.result;",
+							"    pm.expect(jsonDicData.areacode).to.eql(\"0816\");",
+							"});",
+							"//验证服务器返回的zip为621000",
+							"pm.test(\"验证服务器返回的zip为621000\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonDicData = jsonData.result;",
+							"    pm.expect(jsonDicData.zip).to.eql(\"621000\");",
+							"});",
+							"//验证服务器返回的company为联通",
+							"pm.test(\"验证服务器返回的company为联通\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var jsonDicData = jsonData.result;",
+							"    pm.expect(jsonDicData.company).to.eql(\"联通\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://apis.juhe.cn/mobile/get?phone=18683668458&key=c4555c5140e29bb7a704b51a64f921c4&dtype=json",
+					"protocol": "http",
+					"host": [
+						"apis",
+						"juhe",
+						"cn"
+					],
+					"path": [
+						"mobile",
+						"get"
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "18683668458"
+						},
+						{
+							"key": "key",
+							"value": "c4555c5140e29bb7a704b51a64f921c4"
+						},
+						{
+							"key": "dtype",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
